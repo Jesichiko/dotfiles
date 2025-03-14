@@ -1,9 +1,9 @@
-# My personal dotfiles
-Goofy Arch-Linux .config files
-
+<h1 align="center">
+  My personal dotfiles
+</h1>
 ## Reqs
 
-### Git and Gnu stow
+### Git and GNU stow
 - Arch Linux
 ```
 pacman -S git stow
