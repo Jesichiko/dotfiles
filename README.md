@@ -9,11 +9,11 @@
 ## Reqs
 ### Git and GNU stow
 - Arch Linux
-```bash
+```sh
 pacman -S git stow
 ```
 - Ubuntu/Debian
-```bash
+```sh
 sudo apt install git stow
 ```
 
