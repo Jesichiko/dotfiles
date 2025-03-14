@@ -3,21 +3,14 @@ Goofy Arch-Linux .config files
 
 ## Reqs
 
-### Git
+### Git and Gnu stow
 - Arch Linux
 ```
-pacman -S git
-```
-- Ubuntu/Debian
-```
-sudo apt install git
-```
-### Stow
-- Arch Linux
-```
+pacman -S git 
 pacman -S stow
 ```
 - Ubuntu/Debian
 ```
+sudo apt install git
 sudo apt install stow
 ```
