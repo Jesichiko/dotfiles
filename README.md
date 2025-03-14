@@ -3,7 +3,7 @@ Goofy Arch-Linux .config files
 
 ## Reqs
 
-###Git
+### Git
 - Arch Linux
 ```
 pacman -S git
