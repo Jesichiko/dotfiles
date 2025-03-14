@@ -17,3 +17,13 @@ pacman -S git stow
 sudo apt install git stow
 ```
 
+## Installation
+Clone the repo:
+```sh
+git clone https://github.com/Jesichiko/dotfiles.git
+cd dotfiles
+```
+Then run GNU stow:
+```
+stow .
+```
