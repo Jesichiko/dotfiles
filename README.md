@@ -23,6 +23,10 @@ Clone the repo:
 git clone https://github.com/Jesichiko/dotfiles.git
 cd dotfiles
 ```
+Run the `init.sh` to install dependencies:
+```sh
+./init.sh
+```
 Then run GNU stow:
 ```
 stow .
