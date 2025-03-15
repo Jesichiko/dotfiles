@@ -1,4 +1,4 @@
---tresitter (highlighting de diferentes langs)
+--tresitter (highlighting)
 return {
 	"nvim-lua/plenary.nvim",
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },

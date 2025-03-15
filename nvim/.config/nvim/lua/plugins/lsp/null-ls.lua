@@ -1,4 +1,4 @@
---none-ls, for de null-ls
+--none-ls, fork of null-ls
 return {
 	"nvimtools/none-ls.nvim",
 	dependencies = {
@@ -32,7 +32,7 @@ return {
 				null_ls.builtins.formatting.clang_format,
 				require("none-ls.diagnostics.cpplint"),
 
-				-- JavaScript (y TypeScript)
+				-- JavaScript (and TypeScript)
 				null_ls.builtins.formatting.prettier,
 				require("none-ls.diagnostics.eslint_d"),
 			},
