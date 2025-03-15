@@ -2,79 +2,79 @@ version = 3
 final_space = true
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-	
-  #display current path
-  [[blocks.segments]]
-    type = 'path'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
-    template = '┏[<white> </> <#98bfad>{{ .UserName }}</> on <white> </> <#F5C2E7>{{ .Path }}</>]'
-    
-    [blocks.segments.properties]
-      style = 'folder'
+type = 'prompt'
+alignment = 'left'
 
-  #git status bar
-  [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
-    foreground = '#6c6c6c'
-    background = 'transparent'
-    template = '[ {{ .HEAD }}<cyan>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}} {{if gt .Behind 0}}⇣{{end}}{{if gt .Ahead 0}}⇡{{end}}</>]'
+#display current path
+[[blocks.segments]]
+type = 'path'
+style = 'plain'
+background = 'transparent'
+foreground = 'blue'
+template = '┏[<white> </> <#98bfad>{{ .UserName }}</> on <white> </> <#F5C2E7>{{ .Path }}</>]'
 
-    [blocks.segments.properties]
-      fetch_status = true
-      commit_icon = '@' 
+[blocks.segments.properties]
+style = 'folder'
 
-[[blocks]]
-  type = 'rprompt'
-  overflow = 'hidden'
+#git status bar
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+foreground = '#6c6c6c'
+background = 'transparent'
+template = '[ {{ .HEAD }}<cyan>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}} {{if gt .Behind 0}}⇣{{end}}{{if gt .Ahead 0}}⇡{{end}}</>]'
 
-  #executiontime
-  [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
-    foreground = 'yellow'
-    background = 'transparent'
-    template = '{{ .FormattedMs }} '
-
-    [blocks.segments.properties]
-      threshold = 5000
-  
-  #time
-  [[blocks.segments]]
-    type = 'time'
-    style = 'plain'
-    foreground = '#94ffa2'
-    template = '{{.CurrentDate | date .Format}}'
+[blocks.segments.properties]
+fetch_status = true
+commit_icon = '@'
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+type = 'rprompt'
+overflow = 'hidden'
 
-  #display angle bracket
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
-    ]
-    background = 'transparent'
-    template = '<blue>┗</>❯'
+#executiontime
+[[blocks.segments]]
+type = 'executiontime'
+style = 'plain'
+foreground = 'yellow'
+background = 'transparent'
+template = '{{ .FormattedMs }} '
 
-  [transient_prompt]
-    foreground_templates = [
-      "{{if gt .Code 0}}red{{end}}",
-      "{{if eq .Code 0}}magenta{{end}}",
-    ]
-    background = 'transparent'
-    template = '❯'
+[blocks.segments.properties]
+threshold = 5000
+
+#time
+[[blocks.segments]]
+type = 'time'
+style = 'plain'
+foreground = '#94ffa2'
+template = '{{.CurrentDate | date .Format}}'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+#display angle bracket
+[[blocks.segments]]
+type = 'text'
+style = 'plain'
+foreground_templates = [
+	"{{if gt .Code 0}}red{{end}}",
+	"{{if eq .Code 0}}magenta{{end}}",
+]
+background = 'transparent'
+template = '<blue>┗</>❯'
+
+[transient_prompt]
+foreground_templates = [
+	"{{if gt .Code 0}}red{{end}}",
+	"{{if eq .Code 0}}magenta{{end}}",
+]
+background = 'transparent'
+template = '❯'
 
 [secondary.prompt]
-  foreground = 'magenta'
-  background = 'transparent'
-  template = '❯❯'
+foreground = 'magenta'
+background = 'transparent'
+template = '❯❯'
