@@ -12,6 +12,7 @@ return {
 				-- Lua
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.diagnostics.selene,
+
 				-- Python
 				null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.isort,
@@ -22,11 +23,12 @@ return {
 				null_ls.builtins.diagnostics.ktlint,
 
 				-- Haskell
-				--null_ls.builtins.formatting.ormolu,
-				--null_ls.builtins.diagnostics.hlint,
+				-- null_ls.builtins.formatting.hls,
+				-- null_ls.builtins.diagnostics.hlint,
 
 				-- Java
 				null_ls.builtins.formatting.google_java_format,
+				null_ls.builtins.diagnostics.checkstyle,
 
 				-- C
 				null_ls.builtins.formatting.clang_format,
@@ -35,6 +37,12 @@ return {
 				-- JavaScript (and TypeScript)
 				null_ls.builtins.formatting.prettier,
 				require("none-ls.diagnostics.eslint_d"),
+
+				-- hypr
+        -- in core/autocmds.lua
+				-- bash
+				null_ls.builtins.formatting.beautysh,
+				null_ls.builtins.diagnostics.shellcheck,
 			},
 		})
 	end,
