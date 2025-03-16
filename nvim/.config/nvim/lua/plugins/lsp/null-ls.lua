@@ -1,49 +1,49 @@
 --none-ls, fork of null-ls
 return {
-	"nvimtools/none-ls.nvim",
-	dependencies = {
-		"nvimtools/none-ls-extras.nvim",
-	},
-	config = function()
-		local null_ls = require("null-ls")
+  "nvimtools/none-ls.nvim",
+  "nvimtools/none-ls-extras.nvim",
 
-		null_ls.setup({
-			sources = {
-				-- Lua
-				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.diagnostics.selene,
+  config = function()
+    local null_ls = require("null-ls")
 
-				-- Python
-				null_ls.builtins.formatting.black,
-				null_ls.builtins.formatting.isort,
-				require("none-ls.diagnostics.flake8"),
+    null_ls.setup({
+      sources = {
+        -- Lua
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.selene,
 
-				-- Kotlin
-				null_ls.builtins.formatting.ktlint,
-				null_ls.builtins.diagnostics.ktlint,
+        -- Python
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
+        require("none-ls.diagnostics.flake8"),
 
-				-- Haskell
-				-- null_ls.builtins.formatting.hls,
-				-- null_ls.builtins.diagnostics.hlint,
+        -- Kotlin
+        null_ls.builtins.formatting.ktlint,
+        null_ls.builtins.diagnostics.ktlint,
 
-				-- Java
-				null_ls.builtins.formatting.google_java_format,
-				null_ls.builtins.diagnostics.checkstyle,
+        -- Haskell
+        -- null_ls.builtins.formatting.hls,
+        -- null_ls.builtins.diagnostics.hlint,
 
-				-- C
-				null_ls.builtins.formatting.clang_format,
-				require("none-ls.diagnostics.cpplint"),
+        -- Java
+        null_ls.builtins.formatting.google_java_format,
+        null_ls.builtins.diagnostics.checkstyle,
 
-				-- JavaScript (and TypeScript)
-				null_ls.builtins.formatting.prettier,
-				require("none-ls.diagnostics.eslint_d"),
+        -- C
+        null_ls.builtins.formatting.clang_format,
+        require("none-ls.diagnostics.cpplint"),
 
-				-- hypr
-        -- in core/autocmds.lua
-				-- bash
-				null_ls.builtins.formatting.beautysh,
-				null_ls.builtins.diagnostics.shellcheck,
-			},
-		})
-	end,
+        -- JavaScript (and TypeScript)
+        null_ls.builtins.formatting.prettier,
+        require("none-ls.diagnostics.eslint_d"),
+
+        -- hypr
+        -- in -> core/autocmds.lua
+
+        -- bash
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.diagnostics.bashls,
+      },
+    })
+  end,
 }
