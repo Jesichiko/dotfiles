@@ -5,9 +5,20 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     local header = require("plugins.UI.art-dashboard.art")
+    local fortune = require("alpha.fortune")
 
     -- Header
     dashboard.config.layout[2] = header
+
+    -- Tasks
+    dashboard.section.tasks = {
+      type = "text",
+      val = os.date("%I:%M %p, %d - %b"),
+      opts = {
+        hl = "Keyword",
+        position = "center",
+      },
+    }
 
     -- Center
     dashboard.section.buttons.val = {
@@ -20,22 +31,15 @@ return {
     }
 
     -- Footer
-    local f = io.popen("fortune linux")
-    local fortune_text
-
-    if f == nil then
-      fortune_text = "Despite everything, it's still you..."
-    else
-      fortune_text = f:read("*a")
-      f:close()
-    end
-    dashboard.section.footer.val = fortune_text
+    dashboard.section.footer.val = fortune()
 
     -- Layout
     dashboard.config.layout = {
-      { type = "padding", val = 3 },
+      { type = "padding", val = 0 },
       header,
-      { type = "padding", val = 2 },
+      { type = "padding", val = 1 },
+      dashboard.section.tasks,
+      { type = "padding", val = 0 },
       {
         type = "group",
         val = {
@@ -49,7 +53,7 @@ return {
           layout = "horizontal",
         },
       },
-      { type = "padding", val = 2 },
+      { type = "padding", val = 0 },
       dashboard.section.footer,
     }
 
