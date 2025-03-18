@@ -49,6 +49,7 @@ alias c='clear'
 alias zshconfig='nvim ~/.zshrc'
 alias nvimconfig='cd ~/.config/nvim'
 alias poshconfig='nvim ~/.config/ohmyposh/config.toml'
+alias hyprconfig='cd ~/.config/hypr'
 alias cdd='cd ..'
 alias q='exit'
 
