@@ -8,7 +8,5 @@ opt.expandtab = true
 opt.smartindent = true
 
 --colorscheme
-vim.cmd("colorscheme carbonfox")
-
-
+vim.cmd("colorscheme catppuccin-mocha")
 

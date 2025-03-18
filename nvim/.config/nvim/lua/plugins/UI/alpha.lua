@@ -4,10 +4,10 @@ return {
   config = function()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
-    local header = require("art-dashboard.art")
+    local header = require("plugins.UI.art-dashboard.art")
 
     -- Header
-    dashboard.section.header = header
+    dashboard.config.layout[2] = header
 
     -- Center
     dashboard.section.buttons.val = {
@@ -20,7 +20,7 @@ return {
     }
 
     -- Footer
-    local f = io.popen("fortune")
+    local f = io.popen("fortune linux")
     local fortune_text
 
     if f == nil then
@@ -30,6 +30,29 @@ return {
       f:close()
     end
     dashboard.section.footer.val = fortune_text
+
+    -- Layout
+    dashboard.config.layout = {
+      { type = "padding", val = 3 },
+      header,
+      { type = "padding", val = 2 },
+      {
+        type = "group",
+        val = {
+          {
+            type = "group",
+            val = dashboard.section.buttons.val,
+            opts = { spacing = 1 },
+          },
+        },
+        opts = {
+          layout = "horizontal",
+        },
+      },
+      { type = "padding", val = 2 },
+      dashboard.section.footer,
+    }
+
     alpha.setup(dashboard.config)
   end,
 }
