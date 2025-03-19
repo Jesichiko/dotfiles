@@ -50,6 +50,13 @@ style = 'plain'
 foreground = '#94ffa2'
 template = '{{.CurrentDate | date .Format}}'
 
+# venv
+[[blocks.segments]]
+type = 'python'
+style = 'plain'
+foreground = 'green'
+template = "   {{ .Venv }}"
+
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
