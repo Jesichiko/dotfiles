@@ -5,7 +5,7 @@ final_space = true
 type = 'prompt'
 alignment = 'left'
 
-#display current path
+# Display current user and folder
 [[blocks.segments]]
 type = 'path'
 style = 'plain'
@@ -16,7 +16,7 @@ template = '┏[<white> </> <#98bfad>{{ .UserName }}</> on <white> </> <#F
 [blocks.segments.properties]
 style = 'folder'
 
-#git status bar
+# Git status bar
 [[blocks.segments]]
 type = 'git'
 style = 'plain'
@@ -32,7 +32,7 @@ commit_icon = '@'
 type = 'rprompt'
 overflow = 'hidden'
 
-#executiontime
+# Execution Time
 [[blocks.segments]]
 type = 'executiontime'
 style = 'plain'
@@ -43,26 +43,29 @@ template = '{{ .FormattedMs }} '
 [blocks.segments.properties]
 threshold = 5000
 
-#time
+# Time
 [[blocks.segments]]
 type = 'time'
 style = 'plain'
 foreground = '#94ffa2'
 template = '{{.CurrentDate | date .Format}}'
 
+[blocks.segments.properties]
+time_format = "3:04PM"
+
 # venv
 [[blocks.segments]]
 type = 'python'
 style = 'plain'
 foreground = 'green'
-template = "   {{ .Venv }}"
+template = "  {{ .Venv }}"
 
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
 newline = true
 
-#display angle bracket
+# Display angle bracket
 [[blocks.segments]]
 type = 'text'
 style = 'plain'
