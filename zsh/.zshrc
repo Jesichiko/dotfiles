@@ -60,5 +60,5 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 zinit ice wait lucid
 zinit light z-shell/zsh-zoxide
 
-# Thme
+# Theme
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"

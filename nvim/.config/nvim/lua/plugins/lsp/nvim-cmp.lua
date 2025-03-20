@@ -1,5 +1,6 @@
 return {
     "hrsh7th/nvim-cmp",
+    "tamago324/cmp-zsh",
     config = function()
         local cmp = require("cmp")
         require("luasnip.loaders.from_vscode").lazy_load()
@@ -23,6 +24,7 @@ return {
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
             }),
             sources = cmp.config.sources({
+                { name = "zsh" },
                 { name = "luasnip" },
                 { name = "nvim_lsp" },
             }, {
