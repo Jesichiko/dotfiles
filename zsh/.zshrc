@@ -62,3 +62,6 @@ zinit light z-shell/zsh-zoxide
 
 # Theme
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+
+# yazi editor
+export EDITOR=nvim
