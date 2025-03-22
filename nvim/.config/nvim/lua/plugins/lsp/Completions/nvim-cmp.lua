@@ -8,7 +8,6 @@ return {
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body) -- Luasnip
-                    vim.snippet.expand(args.body) -- Native nvim snippets
 				end,
 			},
 
@@ -26,7 +25,7 @@ return {
 			}),
 
 			sources = cmp.config.sources({
-                { name = "zsh" }, -- cmp-zsh
+                -- { name = "zsh" }, -- cmp-zsh
 				{ name = "luasnip" }, -- cmp-nvim-lsp
 				{ name = "nvim_lsp" },
 			}, { { name = "buffer" } }),

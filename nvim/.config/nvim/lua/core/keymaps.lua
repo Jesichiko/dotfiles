@@ -24,4 +24,4 @@ keymap("n", "<leader>gf", lsp.format, opts)
 keymap("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
 -- terminal
-keymap("n", "<leader>ñ", "<cmd>term<CR>", opts)
+keymap("n", "<leader>ñ", "<cmd>ToggleTerm<CR>", opts)
