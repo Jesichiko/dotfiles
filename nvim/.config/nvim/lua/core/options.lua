@@ -29,6 +29,7 @@ opt.virtualedit = "block"
 opt.inccommand = "split"
 
 opt.ignorecase = true
+opt.signcolumn = "yes"
 
 -- colorscheme
 vim.cmd("colorscheme catppuccin-macchiato")
