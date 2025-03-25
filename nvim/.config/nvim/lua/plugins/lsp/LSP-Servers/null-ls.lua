@@ -38,6 +38,8 @@ return {
 				null_ls.builtins.formatting.prettier,
 				require("none-ls.diagnostics.eslint_d"),
 
+                -- Julia
+
 				-- hypr
 				-- in -> core/autocmds.lua
 

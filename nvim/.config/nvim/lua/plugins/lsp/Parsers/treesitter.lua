@@ -19,6 +19,9 @@ return {
 					node_decremental = "<leader>sd",
 				},
 			},
+			vim.filetype.add({
+				pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+			}),
 		})
 	end,
 }
