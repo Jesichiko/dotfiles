@@ -65,3 +65,5 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
 # yazi editor
 export EDITOR=nvim
+
+export PATH=$PATH:/home/jesichi/.spicetify
