@@ -33,8 +33,9 @@ alias hyprconfig='cd ~/.config/hypr'
 alias ghosttyconfig='nvim ~/.config/ghostty/config'
 alias cdd='cd ..'
 alias q='exit'
+alias n='nvim'
 
-# plugins 
+# plugins
 zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 
@@ -66,4 +67,5 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 # yazi editor
 export EDITOR=nvim
 
-export PATH=$PATH:/home/jesichi/.spicetify
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
