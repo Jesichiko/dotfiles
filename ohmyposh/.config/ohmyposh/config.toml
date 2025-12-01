@@ -11,7 +11,7 @@ type = 'path'
 style = 'plain'
 background = 'transparent'
 foreground = 'blue'
-template = '┏[<white> </> <#98bfad>{{ .UserName }}</> on <white> </> <#F5C2E7>{{ .Path }}</>]'
+template = '┏[<white> </> <#94ffa2>{{ .UserName }}</> on <white> </> <#F5C2E7>{{ .Path }}</>]'
 
 [blocks.segments.properties]
 style = 'folder'
@@ -70,16 +70,16 @@ newline = true
 type = 'text'
 style = 'plain'
 foreground_templates = [
-	"{{if gt .Code 0}}red{{end}}",
-	"{{if eq .Code 0}}magenta{{end}}",
+  "{{if gt .Code 0}}red{{end}}",
+  "{{if eq .Code 0}}magenta{{end}}",
 ]
 background = 'transparent'
 template = '<blue>┗</>❯'
 
 [transient_prompt]
 foreground_templates = [
-	"{{if gt .Code 0}}red{{end}}",
-	"{{if eq .Code 0}}magenta{{end}}",
+  "{{if gt .Code 0}}red{{end}}",
+  "{{if eq .Code 0}}magenta{{end}}",
 ]
 background = 'transparent'
 template = '❯'

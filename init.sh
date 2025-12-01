@@ -385,10 +385,47 @@ install_fortune() {
   print_success "Fortune installed successfully!"
 }
 
-install_ghostty() {
-  print_message "Installing Ghostty terminal is optional..."
-  print_message "Ghostty can be downloaded from: https://ghostty.org/download"
-  print_message "Follow the instructions on the website to install it for your OS."
+install_kitty() {
+  print_message "Installing Kitty terminal..."
+
+  if command_exists kitty; then
+    print_warning "Kitty is already installed, skipping..."
+    return
+  fi
+
+  OS=$(detect_os)
+
+  case $OS in
+  debian)
+    sudo apt install -y kitty
+    ;;
+  arch)
+    sudo pacman -S --noconfirm kitty
+    ;;
+  *)
+    print_error "Cannot install Kitty. Unsupported OS."
+    ;;
+  esac
+
+  print_success "Kitty installed successfully!"
+}
+
+install_zellij() {
+  print_message "Installing Zellij..."
+
+  if command_exists zellij; then
+    print_warning "Zellij is already installed, skipping..."
+    return
+  fi
+
+  if ! command_exists cargo; then
+    print_error "Rust and Cargo are required to install Zellij. Please run the script again to install Rust."
+    return
+  fi
+
+  cargo install --locked zellij
+
+  print_success "Zellij installed successfully!"
 }
 
 main() {
@@ -413,7 +450,8 @@ main() {
   install_neovim
   install_zoxide
   install_fortune
-  install_ghostty
+  install_kitty
+  install_zellij
 
   if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
