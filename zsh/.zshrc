@@ -92,3 +92,6 @@ fi
 # theme
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
+export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin

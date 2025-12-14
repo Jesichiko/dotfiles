@@ -8,7 +8,7 @@ return {
         local fortune_text
 
         if f == nil then
-            fortune_text = "Goofy discord plugin"
+            fortune_text = "Still alive"
         else
             fortune_text = f:read("*a")
             f:close()

@@ -11,20 +11,28 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.diagnostics.selene,
 
-
 				-- Kotlin
 				null_ls.builtins.formatting.ktlint,
 				null_ls.builtins.diagnostics.ktlint,
-
-				-- Haskell
-				-- null_ls.builtins.formatting.hls,
-				-- null_ls.builtins.diagnostics.hlint,
 
 				-- Java
 				null_ls.builtins.formatting.google_java_format,
 				null_ls.builtins.diagnostics.checkstyle.with({
 					extra_args = { "-c", "/google_checks.xml" },
 				}),
+
+				-- Ruby
+				null_ls.builtins.formatting.rubocop.with({
+					extra_args = { "--config", vim.fn.stdpath("config") .. "/.rubocop.yml" },
+				}),
+				null_ls.builtins.diagnostics.rubocop.with({
+					extra_args = { "--config", vim.fn.stdpath("config") .. "/.rubocop.yml" },
+				}),
+
+			  -- Go 
+        null_ls.builtins.formatting.gofumpt,
+        null_ls.builtins.formatting.goimports_reviser,
+        null_ls.builtins.formatting.golines,
 
 				-- C
 				null_ls.builtins.formatting.clang_format,
@@ -35,7 +43,7 @@ return {
 				require("none-ls.diagnostics.eslint_d"),
 
 				-- Protobuff
-        null_ls.builtins.formatting.buf,
+				null_ls.builtins.formatting.buf,
 
 				-- hypr
 				-- in -> core/autocmds.lua

@@ -1,11 +1,38 @@
-return {
-	--mason
-	{
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
+local diagnostics = vim.diagnostic
+
+local diagnostics_config = {
+	virtual_text = true,
+	signs = {
+		text = {
+			[diagnostics.severity.ERROR] = " ",
+			[diagnostics.severity.WARN] = " ",
+			[diagnostics.severity.INFO] = "󰋼 ",
+			[diagnostics.severity.HINT] = "󰌶",
+		},
+		numhl = {
+			[diagnostics.severity.ERROR] = "DiagnosticSignError",
+			[diagnostics.severity.WARN] = "DiagnosticSignWarn",
+			[diagnostics.severity.INFO] = "DiagnosticSignInfo",
+			[diagnostics.severity.HINT] = "DiagnosticSignHint",
+		},
+		texthl = {
+			[diagnostics.severity.ERROR] = "DiagnosticSignError",
+			[diagnostics.severity.WARN] = "DiagnosticSignWarn",
+			[diagnostics.severity.INFO] = "DiagnosticSignInfo",
+			[diagnostics.severity.HINT] = "DiagnosticSignHint",
+		},
 	},
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+	float = {
+		source = true,
+		border = "rounded",
+	},
+}
+
+return {
+
 	--mason-lspconfig
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -57,6 +84,7 @@ return {
 				},
 			})
 
+			-- java
 			vim.lsp.config("jdtls", {
 				capabilities = capabilities,
 				cmd = {
@@ -89,6 +117,7 @@ return {
 				end,
 			})
 
+			-- lua
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
@@ -102,36 +131,23 @@ return {
 				},
 			})
 
-			vim.diagnostic.config({
-				virtual_text = true,
-				signs = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.INFO] = "󰋼 ",
-						[vim.diagnostic.severity.HINT] = "󰌶",
+			-- go
+			vim.lsp.config("gopls", {
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
 					},
-					numhl = {
-						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-						[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-						[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-						[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-					},
-					texthl = {
-						[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-						[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-						[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-						[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-					},
-				},
-				underline = true,
-				update_in_insert = false,
-				severity_sort = true,
-				float = {
-					source = true,
-					border = "rounded",
 				},
 			})
+
+			vim.diagnostic.config(diagnostics_config)
 		end,
 	},
 }
