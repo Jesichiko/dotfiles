@@ -33,7 +33,7 @@ return {
 				--use_libuv_file_watcher = true
 				group_empty_dirs = true,
 				filtered_items = {
-					hide_by_pattern = { "*.class" },
+					hide_by_pattern = { "*.class", "*.pyc" },
 					always_show_by_pattern = { ".env*" },
 				},
 			},

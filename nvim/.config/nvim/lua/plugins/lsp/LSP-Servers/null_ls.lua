@@ -22,23 +22,17 @@ return {
 				}),
 
 				-- Ruby
-				null_ls.builtins.formatting.rubocop.with({
-					extra_args = { "--config", vim.fn.stdpath("config") .. "/.rubocop.yml" },
-				}),
-				null_ls.builtins.diagnostics.rubocop.with({
-					extra_args = { "--config", vim.fn.stdpath("config") .. "/.rubocop.yml" },
-				}),
 
-			  -- Go 
-        null_ls.builtins.formatting.gofumpt,
-        null_ls.builtins.formatting.goimports_reviser,
-        null_ls.builtins.formatting.golines,
+				-- Go
+				null_ls.builtins.formatting.gofumpt,
+				null_ls.builtins.formatting.goimports_reviser,
+				null_ls.builtins.formatting.golines,
 
 				-- C
 				null_ls.builtins.formatting.clang_format,
 				require("none-ls.diagnostics.cpplint"),
 
-				-- JavaScript (and TypeScript)
+				-- JavaScript/TypeScript
 				null_ls.builtins.formatting.prettier,
 				require("none-ls.diagnostics.eslint_d"),
 
@@ -46,11 +40,11 @@ return {
 				null_ls.builtins.formatting.buf,
 
 				-- hypr
-				-- in -> core/autocmds.lua
+				-- formatting -> core/autocmds.lua
 
 				-- bash
 				null_ls.builtins.formatting.shfmt,
-				-- Diagnostics -> core/autocmds.lua
+				-- diagnostics -> core/autocmds.lua
 			},
 		})
 	end,

@@ -15,16 +15,22 @@ return {
 		custom_catppuccin.normal.c.bg = "#1e2030"
 
 		require("lualine").setup({
+
+			-- general_options
 			options = {
 				theme = custom_catppuccin,
 				component_separators = "",
-				section_separators = { left = "", right = "" },
 				disabled_filetypes = { "alpha", "Outline" },
 			},
+
 			sections = {
+
+				-- vim mode
 				lualine_a = {
-					{ "mode", separator = { left = " ", right = "" } },
+					{ "mode", separator = { right = "" } },
 				},
+
+				-- filetype
 				lualine_b = {
 					{
 						"filetype",
@@ -33,6 +39,8 @@ return {
 					},
 					"filename",
 				},
+
+				-- gitsigns
 				lualine_c = {
 					{
 						"branch",
@@ -44,6 +52,8 @@ return {
 						colored = false,
 					},
 				},
+
+				-- diagnostics
 				lualine_x = {
 					{
 						"diagnostics",
@@ -51,18 +61,20 @@ return {
 						update_in_insert = true,
 					},
 				},
+
 				lualine_y = {},
+
+				-- datetime
 				lualine_z = {
 					{
 						function()
-							return " " .. os.date("%I:%M")
+							return os.date("%I:%M") .. "  "
 						end,
-						separator = { left = " ", right = "" },
+						separator = { left = "" },
 					},
 				},
 			},
 			inactive_sections = {
-				lualine_a = { "filename" },
 				lualine_y = {},
 			},
 			extensions = { "neo-tree", "lazy", "toggleterm", "trouble" },
