@@ -7,7 +7,6 @@ return {
 
 			-- Sources for autocompletion
 			sources = cmp.config.sources({
-				{ name = "zsh" }, -- cmp-zsh
 				{ name = "luasnip" }, -- Luasnip (Snippet engine)
 				{ name = "nvim_lsp" }, -- cmp-nvim-lsp
 			}, {

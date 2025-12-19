@@ -1,6 +1,12 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
+
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"echasnovski/mini.icons",
+	},
+
 	config = function()
 		local custom_catppuccin = require("lualine.themes.catppuccin")
 
@@ -19,7 +25,8 @@ return {
 			-- general_options
 			options = {
 				theme = custom_catppuccin,
-				component_separators = "",
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "::", right = "::" },
 				disabled_filetypes = { "alpha", "Outline" },
 			},
 
@@ -27,10 +34,10 @@ return {
 
 				-- vim mode
 				lualine_a = {
-					{ "mode", separator = { right = "" } },
+					{ "mode" },
 				},
 
-				-- filetype
+				-- file
 				lualine_b = {
 					{
 						"filetype",
@@ -40,44 +47,36 @@ return {
 					"filename",
 				},
 
-				-- gitsigns
-				lualine_c = {
-					{
-						"branch",
-						icon = "",
-					},
-					{
-						"diff",
-						symbols = { added = " ", modified = " ", removed = " " },
-						colored = false,
-					},
-				},
-
-				-- diagnostics
+				-- diagnostics and git branch
 				lualine_x = {
 					{
 						"diagnostics",
 						symbols = { error = " ", warn = " ", info = " ", hint = " " },
 						update_in_insert = true,
 					},
+					{
+						"branch",
+						icon = "",
+					},
 				},
-
-				lualine_y = {},
 
 				-- datetime
 				lualine_z = {
-					{
-						function()
-							return os.date("%I:%M") .. "  "
-						end,
-						separator = { left = "" },
-					},
+					function()
+						return os.date("%I:%M%p")
+					end,
 				},
-			},
-			inactive_sections = {
+
+				lualine_c = {},
 				lualine_y = {},
 			},
-			extensions = { "neo-tree", "lazy", "toggleterm", "trouble" },
+
+			inactive_sections = {
+				lualine_c = {},
+				lualine_y = {},
+			},
+
+			extensions = { "mason", "lazy" },
 		})
 	end,
 }

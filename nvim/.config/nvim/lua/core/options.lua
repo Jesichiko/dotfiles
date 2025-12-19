@@ -1,36 +1,35 @@
-local opt = vim.opt
-
 -- indentation
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.smartindent = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
 
 -- relative number
-opt.number = true
-opt.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- split
-opt.splitright = true
+vim.o.splitright = true
 
 -- wrap
-opt.wrap = false
+vim.o.wrap = false
 
 -- clipboard
-opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 
 -- scrolling
-opt.scrolloff = 999
+vim.o.scrolloff = 999
 
-opt.virtualedit = "block"
+-- v-block
+vim.o.virtualedit = "block"
 
 -- replace split
-opt.inccommand = "split"
+vim.o.inccommand = "split"
 
-opt.ignorecase = true
-opt.signcolumn = "yes"
+-- cmdline
+vim.o.ignorecase = true
+vim.o.signcolumn = "yes"
 
 -- colorscheme
 vim.cmd("colorscheme catppuccin-macchiato")
-
