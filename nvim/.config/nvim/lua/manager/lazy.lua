@@ -23,9 +23,10 @@ require("lazy").setup({
 		{
 			{ import = "plugins.UI" },
 			{ import = "plugins.lsp.Snippets" },
-			{ import = "plugins.lsp.Parsers" },
-			{ import = "plugins.lsp.Completions" },
-			{ import = "plugins.lsp.LSP-Servers" },
+			{ import = "plugins.lsp.Completions_Engine" },
+			{ import = "plugins.lsp.LSP_Engine" },
+			{ import = "plugins.utils.Search" },
+			{ import = "plugins.utils.Parser" },
 			{ import = "plugins.utils" },
 		},
 	},

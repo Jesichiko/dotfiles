@@ -8,5 +8,8 @@
   "workspace.checkThirdParty": false,
   "workspace.library": [
     "$VIMRUNTIME"
-  ]
+  ],
+    "diagnostics.disable": [
+        "undefined-doc-name"
+    ]
 }

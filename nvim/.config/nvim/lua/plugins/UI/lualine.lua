@@ -25,8 +25,8 @@ return {
 			-- general_options
 			options = {
 				theme = custom_catppuccin,
-				section_separators = { left = "", right = "" },
-				component_separators = { left = "::", right = "::" },
+				section_separators = "",
+				component_separators = "::",
 				disabled_filetypes = { "alpha", "Outline" },
 			},
 
@@ -34,7 +34,12 @@ return {
 
 				-- vim mode
 				lualine_a = {
-					{ "mode" },
+					{
+						"mode",
+						fmt = function(mode)
+							return mode:sub(1, 1)
+						end,
+					},
 				},
 
 				-- file
@@ -44,7 +49,14 @@ return {
 						icon_only = true,
 						padding = { left = 1, right = 0 },
 					},
-					"filename",
+				},
+
+				lualine_c = {
+					{
+						"filename",
+						path = 1,
+						color = { gui = "bold" },
+					},
 				},
 
 				-- diagnostics and git branch
@@ -57,26 +69,24 @@ return {
 					{
 						"branch",
 						icon = "",
+						color = { gui = "bold" },
 					},
 				},
 
 				-- datetime
 				lualine_z = {
-					function()
-						return os.date("%I:%M%p")
-					end,
+
+					{
+						function()
+							return os.date("%I:%M%p")
+						end,
+					},
 				},
 
-				lualine_c = {},
 				lualine_y = {},
 			},
 
-			inactive_sections = {
-				lualine_c = {},
-				lualine_y = {},
-			},
-
-			extensions = { "mason", "lazy" },
+			extensions = { "mason", "lazy", "oil" },
 		})
 	end,
 }

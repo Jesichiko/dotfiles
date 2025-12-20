@@ -1,2 +1,2 @@
 require("manager.lazy")
-require("core.init")
+require("settings._st")
