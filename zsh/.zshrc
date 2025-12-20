@@ -28,7 +28,6 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-
 # pattern search
 setopt extended_glob
 
@@ -42,13 +41,12 @@ alias zshconfig='nvim ~/.zshrc'
 alias nvimconfig='cd ~/.config/nvim'
 alias poshconfig='nvim ~/.config/ohmyposh/config.toml'
 alias hyprconfig='cd ~/.config/hypr'
-alias ghosttyconfig='nvim ~/.config/ghostty/config'
 alias q='exit'
 alias n='nvim'
 alias c='clear'
 alias cdd='cd ..'
-# -- Plugins
 
+# -- Plugins
 # highlighting
 zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
@@ -92,6 +90,8 @@ fi
 # theme
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
-export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin"
 export GOPATH=$HOME/go
+export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin"
 export PATH=$PATH:$GOPATH/bin
+
+. "$HOME/.local/share/../bin/env"
