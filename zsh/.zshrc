@@ -6,7 +6,6 @@ fi
 export GOPATH=$HOME/go
 export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin:$GOPATH/bin"
 
-# -- Plugin Manager (Zinit)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
   mkdir -p "$(dirname $ZINIT_HOME)"
@@ -14,9 +13,11 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# -- Tool Inits (SDKMAN, Zoxide, etc.)
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# -- Theme (Oh-My-Posh)
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # -- Plugins
 zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
@@ -49,7 +50,6 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-# -- Theme (Oh-My-Posh)
 if command -v oh-my-posh &>/dev/null; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 fi
