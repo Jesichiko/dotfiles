@@ -1,6 +1,12 @@
-# -- Inits
-#
-# zinit
+# -- Environment & Paths
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+export GOPATH=$HOME/go
+export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin:$GOPATH/bin"
+
+# -- Plugin Manager (Zinit)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
   mkdir -p "$(dirname $ZINIT_HOME)"
@@ -8,91 +14,42 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# SDKMAN
+# -- Tool Inits (SDKMAN, Zoxide, etc.)
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# linuxbrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# -- Plugins
+zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid; zinit light zsh-users/zsh-completions
+zinit ice wait lucid; zinit light zsh-users/zsh-history-substring-search
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice wait lucid; zinit light z-shell/zsh-zoxide
 
-# -- History
+# -- History & Options
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# pattern search
-setopt extended_glob
-
-# -- Bindings
+setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups extended_glob
 bindkey -e
 bindkey '^k' history-search-backward
 bindkey '^j' history-search-forward
 
-# -- Alias
+# -- Aliases
 alias zshconfig='nvim ~/.zshrc'
 alias nvimconfig='cd ~/.config/nvim'
 alias poshconfig='nvim ~/.config/ohmyposh/config.toml'
-alias hyprconfig='cd ~/.config/hypr'
 alias q='exit'
 alias n='nvim'
 alias c='clear'
 alias cdd='cd ..'
-alias a='nvim -c "Telescope find_files"'
 
-# -- Plugins
-# highlighting
-zinit ice wait lucid
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-# autosuggestions
-zinit ice wait lucid
-zinit light zsh-users/zsh-autosuggestions
-
-# completions
-zinit ice wait lucid
-zinit light zsh-users/zsh-completions
-
-# substring completions
-zinit ice wait lucid
-zinit light zsh-users/zsh-history-substring-search
-
-# fzf-tab menu
-zinit ice wait lucid
-zinit light Aloxaf/fzf-tab
-
-# zoxide (z command search)
-zinit ice wait lucid
-zinit light z-shell/zsh-zoxide
-
-# -- Completions 
+# -- Completions
 autoload -Uz compinit && compinit
-
-# styles
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# homebrew completions
-if type brew &>/dev/null; then
-  FPATH="/home/linuxbrew/.linuxbrew/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
+# -- Theme (Oh-My-Posh)
+if command -v oh-my-posh &>/dev/null; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 fi
-
-# theme
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
-
-export GOPATH=$HOME/go
-export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin"
-export PATH=$PATH:$GOPATH/bin
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
