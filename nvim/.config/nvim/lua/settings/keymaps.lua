@@ -34,6 +34,13 @@ vim.keymap.set("n", "<leader>h", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, opts)
 
+--@Git: Gitsings
+vim.keymap.set("n", "<Tab>g", "<cmd>G<CR>", opts)
+
 -- @Plugin Manager:
 -- @Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
+
+-- @Terminal
+-- vim Builtin Terminal
+vim.keymap.set("n", "<leader>ñ", "<cmd> vertical terminal <CR>", opts)

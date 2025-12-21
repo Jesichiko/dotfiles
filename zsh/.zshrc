@@ -45,6 +45,7 @@ alias q='exit'
 alias n='nvim'
 alias c='clear'
 alias cdd='cd ..'
+alias a='nvim -c "Telescope find_files"'
 
 # -- Plugins
 # highlighting
@@ -94,4 +95,4 @@ export GOPATH=$HOME/go
 export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin"
 export PATH=$PATH:$GOPATH/bin
 
-. "$HOME/.local/share/../bin/env"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

@@ -2,8 +2,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	lazy = false,
+
 	config = function()
 		require("nvim-treesitter.configs").setup({
+			ensure_installed = { "latex" },
 			auto_install = true,
 
 			highlight = {
@@ -19,9 +22,6 @@ return {
 					node_decremental = "<leader>sd",
 				},
 			},
-			vim.filetype.add({
-				pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
-			}),
 		})
 	end,
 }

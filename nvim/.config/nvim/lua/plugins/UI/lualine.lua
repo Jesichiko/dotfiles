@@ -1,3 +1,11 @@
+local function get_datetime_if_fullscreen()
+	if vim.o.lines < 40 then
+		return ""
+	else
+		return os.date("%I:%M%p")
+	end
+end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
@@ -77,9 +85,7 @@ return {
 				lualine_z = {
 
 					{
-						function()
-							return os.date("%I:%M%p")
-						end,
+						get_datetime_if_fullscreen,
 					},
 				},
 
