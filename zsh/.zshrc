@@ -16,7 +16,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# -- Theme (Oh-My-Posh)
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # -- Plugins
@@ -50,6 +49,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
+# -- Theme (Oh-My-Posh)
 if command -v oh-my-posh &>/dev/null; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 fi
