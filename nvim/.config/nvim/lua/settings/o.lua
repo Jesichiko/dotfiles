@@ -34,4 +34,4 @@ vim.o.ignorecase = true
 vim.o.signcolumn = "yes"
 
 -- colorscheme
-vim.cmd("colorscheme catppuccin-macchiato")
+vim.cmd.colorscheme("oldworld")
