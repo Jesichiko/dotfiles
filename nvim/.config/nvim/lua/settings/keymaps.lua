@@ -1,10 +1,3 @@
--- Helper autocmd
-vim.api.nvim_create_autocmd({ "BufLeave", "InsertEnter", "WinLeave" }, {
-	callback = function()
-		vim.lsp.buf.clear_references()
-	end,
-})
-
 -- @Keymaps
 
 local opts = { noremap = true, silent = true }
@@ -19,13 +12,16 @@ vim.keymap.set("n", "<C-l>", builtin.live_grep, opts)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
 
 -- Oil
-vim.keymap.set("n", "<C-ñ>", "<cmd>Oil<CR>", opts)
+vim.keymap.set("n", "<C-ñ>", "<cmd> Oil --float <CR>", opts)
+vim.keymap.set("n", "-", "<cmd> Oil --float<CR>", opts)
+vim.keymap.set("n", "<C-->", "<cmd> Oil<CR>", opts)
 
 -- @Langs:
 -- @LSP
 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
 vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, opts)
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.document_highlight, opts)
 vim.keymap.set("n", "<leader>gf", function()
 	require("conform").format({ lsp_format = "fallback" })
@@ -41,7 +37,8 @@ vim.keymap.set("n", "<leader>h", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, opts)
 
---@Git: Gitsings
+-- @Git:
+-- Gitsings
 vim.keymap.set("n", "<Tab>g", "<cmd>G<CR>", opts)
 
 -- @Plugin Manager:
@@ -52,6 +49,10 @@ vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 -- vim Builtin Terminal
 vim.keymap.set("n", "<leader>ñ", function()
 	vim.cmd.vsplit()
+	vim.api.nvim_win_set_width(0, 38)
 	vim.cmd.term()
-	vim.api.nvim_win_set_width(0, 35)
+	vim.cmd.startinsert()
 end, opts)
+
+-- vim modes in Termi38l
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)

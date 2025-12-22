@@ -25,7 +25,7 @@ return {
 			dashboard.button("n", "  Nuevo Archivo", ":ene<CR>"),
 			dashboard.button("r", "  Recientes", ":Telescope oldfiles<CR>"),
 			dashboard.button("a", "  Buscar Archivo", ":Telescope find_files<CR>"),
-			dashboard.button("f", "  Buscar Texto", ":Telescope live_grep<CR>"),
+			dashboard.button("t", "  Buscar Texto", ":Telescope live_grep<CR>"),
 			dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
 			dashboard.button("q", "  Salir", ":qa<CR>"),
 		}

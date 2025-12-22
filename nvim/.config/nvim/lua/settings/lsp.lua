@@ -11,8 +11,8 @@ local needed_servers = {
 }
 
 local needed_formatters = {
-	"stylua",
 	"ruff",
+	"stylua",
 	"gofumpt",
 	"goimports",
 	"golines",
@@ -28,7 +28,21 @@ local servers_config = {
 		settings = {
 			pylsp = {
 				plugins = {
-					ruff = { enabled = true },
+					pycodestyle = { enabled = false },
+					pyflakes = { enabled = false },
+					mccabe = { enabled = false },
+
+					ruff = {
+						enabled = true,
+						extendSelect = { "I" },
+						lineLength = 88,
+					},
+
+					jedi_completion = { enabled = true },
+					jedi_hover = { enabled = true },
+					jedi_references = { enabled = true },
+					jedi_signature_help = { enabled = true },
+					jedi_symbols = { enabled = true },
 				},
 			},
 		},
@@ -36,14 +50,36 @@ local servers_config = {
 
 	-- @lua
 	lua_ls = {
-		settings = {
-			Lua = {
+		on_init = function(client)
+			if client.workspace_folders then
+				local path = client.workspace_folders[1].name
+				if
+					path ~= vim.fn.stdpath("config")
+					and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+				then
+					return
+				end
+			end
+
+			client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+				runtime = {
+					version = "LuaJIT",
+					path = {
+						"lua/?.lua",
+						"lua/?/init.lua",
+					},
+				},
 				workspace = {
+					checkThirdParty = false,
 					library = {
 						vim.env.VIMRUNTIME,
 						"${3rd}/love2d/library",
 					},
 				},
+			})
+		end,
+		settings = {
+			Lua = {
 				diagnostics = {
 					globals = { "vim", "love" },
 				},
@@ -73,7 +109,12 @@ local servers_config = {
 local capabilities = vim.tbl_deep_extend(
 	"force",
 	vim.lsp.protocol.make_client_capabilities(),
-	require("cmp_nvim_lsp").default_capabilities()
+	require("cmp_nvim_lsp").default_capabilities(),
+	{
+		general = {
+			positionEncodings = { "utf-8", "utf-16" },
+		},
+	}
 )
 
 local servers = vim.list_extend(
