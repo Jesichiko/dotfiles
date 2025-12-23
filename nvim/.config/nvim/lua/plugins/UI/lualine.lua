@@ -1,9 +1,9 @@
 ---@return string|osdate
 local function get_datetime_if_fullscreen()
-	if vim.o.lines - vim.o.cmdheight < 39 then
-		return ""
-	else
+	if vim.o.lines >= 34 then
 		return os.date("%I:%M%p")
+	else
+		return ""
 	end
 end
 
@@ -37,7 +37,7 @@ return {
 			options = {
 				theme = "auto",
 				section_separators = "",
-				component_separators = "::",
+				component_separators = { left = "", right = "::" },
 				disabled_filetypes = { "alpha", "Outline" },
 			},
 			sections = {
@@ -50,21 +50,23 @@ return {
 						end,
 					},
 				},
+
+				lualine_b = {},
+
 				-- file
-				lualine_b = {
+				lualine_c = {
 					{
 						"filetype",
 						icon_only = true,
 						padding = { left = 1, right = 0 },
 					},
-				},
-				lualine_c = {
 					{
 						"filename",
 						path = 1,
 						color = { gui = "bold" },
 					},
 				},
+
 				-- diagnostics and git branch
 				lualine_x = {
 					{
@@ -82,7 +84,9 @@ return {
 						color = { gui = "bold" },
 					},
 				},
+
 				lualine_y = {},
+
 				-- datetime
 				lualine_z = {
 					{

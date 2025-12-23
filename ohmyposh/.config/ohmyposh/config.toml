@@ -7,11 +7,11 @@ alignment = 'left'
 
 # Display current user and folder
 [[blocks.segments]]
-type = 'path'
-style = 'plain'
-background = 'transparent'
-foreground = 'blue'
-template = '┏[<white> </> <#94ffa2>{{ .UserName }}</> on <white> </> <#F5C2E7>{{ .Path }}</>]'
+type = 'path' 
+style = 'plain' 
+background = 'transparent' 
+foreground = 'blue' 
+template = 'on <#F5C2E7>{{.Path}}</>'
 
 [blocks.segments.properties]
 style = 'folder'
@@ -22,7 +22,7 @@ type = 'git'
 style = 'plain'
 foreground = '#6c6c6c'
 background = 'transparent'
-template = '[ {{ .HEAD }}<cyan>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}} {{if gt .Behind 0}}⇣{{end}}{{if gt .Ahead 0}}⇡{{end}}</>]'
+template = ' {{ .HEAD }}<cyan>{{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}} {{if gt .Behind 0}}⇣{{end}}{{if gt .Ahead 0}}⇡{{end}}' 
 
 [blocks.segments.properties]
 fetch_status = true
@@ -71,15 +71,15 @@ type = 'text'
 style = 'plain'
 foreground_templates = [
   "{{if gt .Code 0}}red{{end}}",
-  "{{if eq .Code 0}}magenta{{end}}",
+  "{{if eq .Code 0}}blue{{end}}",
 ]
 background = 'transparent'
-template = '<blue>┗</>❯'
+template = '<blue>❯</>'
 
 [transient_prompt]
 foreground_templates = [
   "{{if gt .Code 0}}red{{end}}",
-  "{{if eq .Code 0}}magenta{{end}}",
+  "{{if eq .Code 0}}<#94ffa2>{{end}}",
 ]
 background = 'transparent'
 template = '❯'

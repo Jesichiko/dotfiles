@@ -4,59 +4,71 @@ return {
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
-		local header = require("plugins.UI.art-dashboard.art")
-		local fortune = require("alpha.fortune")
 
-		-- Header
-		dashboard.config.layout[2] = header
+		local header = {
+			type = "text",
+			val = {
+				[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍⡛⠛⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠀⠠⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀]],
+				[[⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⡈⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠲⠄⠀⠀⠀⠛⠛⠛⠛⠀]],
+				[[⣿⣿⣿⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⢀⡀⠀⠀⠀]],
+				[[⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣁⣀⣀⠀⠀]],
+				[[⣿⣿⣿⣿⣿⣿⡿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣉⠀]],
+				[[⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠖⠛⠃]],
+				[[⣿⣿⠿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠤⡄⠀]],
+				[[⣿⣿⠀⢹⡿⠰⠂⠀⠀⠀⠀⠀⢀⠎⠀⠀⠀⠀⠀⠀⠘⣦⡇⠀⠀⠙⡂⠠⣘⠃⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠐⠒⠁⠀]],
+				[[⢹⣿⠀⢨⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⡂⢀⠀⠀⠀⠀⡦⢸⣿⣶⣶⣶⣿⠦⢛⣃⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣶⣄⡐⠠⣀]],
+				[[⣠⠀⠆⠨⠻⣷⣤⡀⠀⠀⠀⠀⠀⠰⣀⣼⡆⠀⣠⣼⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡆⠀⡄⡐⠀⠀⠀⠀⠀⠀⠀⢈⣩⣿⣿⣿⣿⣷⣤]],
+				[[⠈⠘⢷⣄⠸⣼⣗⣄⡀⠀⠀⠀⠀⠀⠈⠋⢳⡄⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢠⣴⠃⠀⠀⠀⠀⠐⢲⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+				[[⣇⣷⣦⡉⠳⣌⡻⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⢳⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠾⡏⠀⠀⡀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+				[[⣿⣿⣿⣿⣦⣈⠻⢮⡻⠿⠛⠁⣀⣤⣤⣤⣶⣶⣤⣤⣤⣤⣤⣤⣤⠄⠈⣉⣭⡄⠈⣡⠞⣴⠀⢴⣀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+				[[⣿⣿⣿⡿⠛⠛⢷⡄⠒⠧⠀⠹⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣤⣬⣉⢉⡙⠀⢋⣾⣿⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+				[[⣿⣿⣽⠃⠀⣶⠆⠀⠀⠛⠃⠈⠓⠢⢝⠻⣿⣿⣿⠿⡿⡫⢠⣾⣿⣿⣦⡉⢀⡅⠂⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
+				[[⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠁⠈⠀⠈⠻⣿⣿⣿⣿⠟⢱⣷⣭⠳⣝⢿⣿⣿⡿⠟⣛⣛⣛⠿⢿⡿⢿⣿⣿⣿⣿]],
+				[[⡟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠂⠀⠁⣀⡠⢀⠀⠀⠉⠛⠋⠀⠀⠙⢿⣷⣌⠁⠩⢒⣠⣴⣶⣦⣍⠻⣿⣿⣿⣿⣿⣿⣿]],
+				[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢢⡈⠁⠀⠀⠀⠀⠀⣀⣤⣶⣶⣄⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡘⣿⣿⣿⣿⣿⣿]],
+				[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣦⡀⠀⠀⠀⢌⢿⣿⣿⣿⣿⣿⣦⣤⣍⡛⠿⣿⣿⣿⣿⣿⣿⣮⡈⠻⣿⣿⣿]],
+				[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⣄⠀⢺⣦⣀⠉⠋⠉⠉⣤⣤⣤⣭⣼⠑⣶⣾⣿⣿⣿⣿⣿⣿⣷⣦⣭⣽]],
+				[[⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠀⠰⠉⠈⠁⠀⠀⠀⠈⠻⣿⣿⠉⠀⣿⣿⣿⠿⠿⣿⣿⣿⣿⣿⣿⣿]],
+			},
+			opts = {
+				position = "center",
+				hl = "Keyword",
+			},
+		}
 
 		-- Tasks
 		dashboard.section.tasks = {
 			type = "text",
-			val = os.date("%I:%M %p, %d - %b"),
+			val = os.date("%I:%M %p, %D - %B"),
 			opts = {
 				hl = "Keyword",
 				position = "center",
 			},
 		}
 
-		-- Center
-		dashboard.section.buttons.val = {
-			dashboard.button("n", "  Nuevo Archivo", ":ene<CR>"),
-			dashboard.button("r", "  Recientes", ":Telescope oldfiles<CR>"),
-			dashboard.button("a", "  Buscar Archivo", ":Telescope find_files<CR>"),
-			dashboard.button("t", "  Buscar Texto", ":Telescope live_grep<CR>"),
-			dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
-			dashboard.button("q", "  Salir", ":qa<CR>"),
-		}
+		-- Fortune (without spacing)
+		---@return table
+		dashboard.section.footer.val = function()
+			local lines = require("alpha.fortune")()
+			local out = {}
 
-		-- Footer
-		dashboard.section.footer.val = fortune()
+			for _, line in ipairs(lines) do
+				if line:match("%S") then
+					table.insert(out, line)
+				end
+			end
+			return out
+		end
 
 		-- Layout
 		dashboard.config.layout = {
-			{ type = "padding", val = 0 },
-			header,
 			{ type = "padding", val = 1 },
-			dashboard.section.tasks,
-			{ type = "padding", val = 0 },
-			{
-				type = "group",
-				val = {
-					{
-						type = "group",
-						val = dashboard.section.buttons.val,
-						opts = { spacing = 1 },
-					},
-				},
-				opts = {
-					layout = "horizontal",
-				},
-			},
+			header,
 			{ type = "padding", val = 0 },
 			dashboard.section.footer,
+			{ type = "padding", val = 1 },
+			dashboard.section.tasks,
 		}
-
 		alpha.setup(dashboard.config)
 	end,
 }

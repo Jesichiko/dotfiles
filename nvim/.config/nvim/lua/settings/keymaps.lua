@@ -54,5 +54,8 @@ vim.keymap.set("n", "<leader>ñ", function()
 	vim.cmd.startinsert()
 end, opts)
 
--- vim modes in Termi38l
+-- vim modes in Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+
+-- @New vsplit
+vim.keymap.set("n", "<leader>vs", "<cmd>vsplit<CR>", opts)
