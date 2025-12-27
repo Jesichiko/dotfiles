@@ -1,31 +1,37 @@
+-- Tooltip
+---@return string
+local function fortune()
+	local f = io.popen("fortune")
+	local tooltip = ""
+
+	if f ~= nil then
+		tooltip = f:read("*a")
+		f:close()
+	end
+
+	return tooltip
+end
+
 return {
 	"vyfor/cord.nvim",
 	build = ":Cord update",
 	event = "VeryLazy",
-	config = function()
-		-- Tooltip
-		local f = io.popen("fortune")
-		local fortune_text
+	opts = {
+		editor = {
+			tooltip = fortune,
+		},
 
-		if f == nil then
-			fortune_text = "Still alive"
-		else
-			fortune_text = f:read("*a")
-			f:close()
-		end
+		timestamp = {
+			enabled = false,
+		},
 
-		require("cord").setup({
-			editor = {
-				tooltip = fortune_text,
-			},
+		display = {
+			theme = "classic",
+			flavor = "dark",
+		},
 
-			display = {
-				flavor = "accent",
-			},
-
-			timestamp = {
-				enabled = false,
-			},
-		})
-	end,
+		text = {
+			workspace = "ᓚᘏᗢ",
+		},
+	},
 }

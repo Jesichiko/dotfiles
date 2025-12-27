@@ -12,6 +12,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- split
+vim.opt.splitbelow = true
 vim.o.splitright = true
 
 -- wrap

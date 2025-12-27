@@ -1,6 +1,5 @@
 return {
 	"MeanderingProgrammer/render-markdown.nvim",
-	ft = { "markdown" },
 	opts = {
 		render_modes = { "n", "c", "t" },
 		completions = { lsp = { enabled = true } },

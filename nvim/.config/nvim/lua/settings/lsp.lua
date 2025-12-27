@@ -8,6 +8,9 @@ local needed_servers = {
 	"clangd",
 	"jdtls",
 	"typescript-language-server",
+	"superhtml",
+	"cssls",
+	"ruby-lsp",
 }
 
 local needed_formatters = {
@@ -18,6 +21,7 @@ local needed_formatters = {
 	"golines",
 	"clang-format",
 	"prettier",
+	"rubocop",
 }
 require("mason-tool-installer").setup({ ensure_installed = vim.list_extend(needed_formatters, needed_servers) })
 
@@ -104,6 +108,56 @@ local servers_config = {
 
 	-- @gleam
 	gleam = {},
+
+	-- @ruby
+	ruby_lsp = {
+		cmd = { "ruby-lsp" },
+		filetypes = { "ruby", "eruby" },
+		init_options = {
+			enabledFeatures = {
+				"documentHighlights",
+				"documentSymbols",
+				"foldingRanges",
+				"selectionRanges",
+				"semanticHighlighting",
+				"formatting",
+				"codeActions",
+				"diagnostics",
+				"completion",
+				"hover",
+			},
+			formatter = "rubocop",
+		},
+		settings = {
+			rubyLsp = {
+				formatter = "rubocop",
+			},
+		},
+	},
+
+	--@HTML
+	superhtml = {
+		cmd = { "superhtml", "lsp" },
+		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]),
+	},
+
+	--@CSS
+	cssls = {
+		init_options = {
+			provideFormatter = true,
+		},
+		settings = {
+			css = {
+				validate = true,
+			},
+			less = {
+				validate = true,
+			},
+			scss = {
+				validate = true,
+			},
+		},
+	},
 }
 
 local capabilities = vim.tbl_deep_extend(

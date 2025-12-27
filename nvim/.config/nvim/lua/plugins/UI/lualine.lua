@@ -1,6 +1,6 @@
 ---@return string|osdate
 local function get_datetime_if_fullscreen()
-	if vim.o.lines >= 34 then
+	if vim.o.lines >= 33 then
 		return os.date("%I:%M%p")
 	else
 		return ""

@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.maplocalleader = " "
 vim.g.mapleader = " "
+vim.opt.termguicolors = true
 
 --lazy setup
 require("lazy").setup({
@@ -29,6 +30,7 @@ require("lazy").setup({
 			{ import = "plugins.utils.Parser" },
 			{ import = "plugins.utils.Notes" },
 			{ import = "plugins.utils.Notify" },
+			{ import = "plugins.utils.Misc" },
 		},
 	},
 	install = { colorscheme = { "habamax" } },
