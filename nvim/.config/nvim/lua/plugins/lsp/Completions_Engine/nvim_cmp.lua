@@ -1,7 +1,37 @@
+local kind_icons = {
+	Text = "",
+	Method = "󰆧",
+	Function = "󰊕",
+	Constructor = "",
+	Field = "󰇽",
+	Variable = "󰂡",
+	Class = "󰠱",
+	Interface = "",
+	Module = "",
+	Property = "󰜢",
+	Unit = "",
+	Value = "󰎠",
+	Enum = "",
+	Keyword = "󰌋",
+	Snippet = "",
+	Color = "󰏘",
+	File = "󰈙",
+	Reference = "",
+	Folder = "󰉋",
+	EnumMember = "",
+	Constant = "󰏿",
+	Struct = "",
+	Event = "",
+	Operator = "󰆕",
+	TypeParameter = "󰅲",
+}
+
 return {
 	"hrsh7th/nvim-cmp",
+	event = { "InsertEnter", "CmdlineEnter" },
 	config = function()
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load() -- Friendly-Snippets
 		cmp.setup({
 
@@ -27,13 +57,50 @@ return {
 			},
 
 			-- Keymaps
-			mapping = cmp.mapping.preset.insert({
+			mapping = {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-				["<C-a>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = false }),
-			}),
+				["<CR>"] = cmp.mapping({
+					i = function(fallback)
+						if cmp.visible() and cmp.get_active_entry() then
+							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+						else
+							fallback()
+						end
+					end,
+					s = cmp.mapping.confirm({ select = true }),
+					c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+				}),
+
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+			},
+
+			-- Formatting
+			formatting = {
+				format = function(_, vim_item)
+					vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+					return vim_item
+				end,
+			},
 		})
 	end,
 	dependencies = { "hrsh7th/cmp-nvim-lsp" },

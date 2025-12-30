@@ -135,13 +135,13 @@ local servers_config = {
 		},
 	},
 
-	--@HTML
+	--@html
 	superhtml = {
 		cmd = { "superhtml", "lsp" },
 		root_dir = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]),
 	},
 
-	--@CSS
+	--@css
 	cssls = {
 		init_options = {
 			provideFormatter = true,

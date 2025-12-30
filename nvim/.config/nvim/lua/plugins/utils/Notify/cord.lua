@@ -18,7 +18,7 @@ return {
 	event = "VeryLazy",
 	opts = {
 		editor = {
-			tooltip = fortune,
+			tooltip = fortune(),
 		},
 
 		timestamp = {
