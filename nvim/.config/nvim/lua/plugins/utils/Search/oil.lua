@@ -4,9 +4,10 @@ return {
 	---@type oil.SetupOpts
 	opts = {
 		default_file_explorer = true,
+		use_default_keymaps = true,
 		view_options = {
 			show_hidden = true,
-			is_always_hidden = function(name, bufnr)
+			is_always_hidden = function(name, _)
 				return name:match("%.(pyc|class)$")
 			end,
 		},
@@ -17,8 +18,8 @@ return {
 			border = "rounded",
 
 			override = function(conf)
-				local screen_w = vim.o.columns -- 137 default
-				local screen_h = vim.o.lines - vim.o.cmdheight -- 39 default
+				local screen_w = vim.o.columns
+				local screen_h = vim.o.lines - vim.o.cmdheight
 				local window_w = conf.width
 				local window_h = conf.height
 

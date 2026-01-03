@@ -21,7 +21,6 @@ local needed_formatters = {
 	"golines",
 	"clang-format",
 	"prettier",
-	"rubocop",
 }
 require("mason-tool-installer").setup({ ensure_installed = vim.list_extend(needed_formatters, needed_servers) })
 
@@ -29,6 +28,9 @@ require("mason-tool-installer").setup({ ensure_installed = vim.list_extend(neede
 local servers_config = {
 	-- @python
 	pylsp = {
+		cmd = { "pylsp" },
+		filetypes = { "python" },
+
 		settings = {
 			pylsp = {
 				plugins = {
@@ -82,6 +84,7 @@ local servers_config = {
 				},
 			})
 		end,
+
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -95,6 +98,7 @@ local servers_config = {
 	gopls = {
 		cmd = { "gopls" },
 		filetypes = { "go", "gomod", "gowork", "gotmpl" },
+
 		settings = {
 			gopls = {
 				completeUnimported = true,
@@ -112,26 +116,10 @@ local servers_config = {
 	-- @ruby
 	ruby_lsp = {
 		cmd = { "ruby-lsp" },
-		filetypes = { "ruby", "eruby" },
+		filetypes = { "ruby" },
 		init_options = {
-			enabledFeatures = {
-				"documentHighlights",
-				"documentSymbols",
-				"foldingRanges",
-				"selectionRanges",
-				"semanticHighlighting",
-				"formatting",
-				"codeActions",
-				"diagnostics",
-				"completion",
-				"hover",
-			},
-			formatter = "rubocop",
-		},
-		settings = {
-			rubyLsp = {
-				formatter = "rubocop",
-			},
+			formatter = "standard",
+			linters = { "standard" },
 		},
 	},
 
@@ -146,6 +134,7 @@ local servers_config = {
 		init_options = {
 			provideFormatter = true,
 		},
+
 		settings = {
 			css = {
 				validate = true,
@@ -184,3 +173,4 @@ for _, server in ipairs(servers) do
 	vim.lsp.config(server, config)
 	vim.lsp.enable(server)
 end
+vim.lsp.inlay_hint.enable(true)

@@ -12,9 +12,8 @@ vim.keymap.set("n", "<C-l>", builtin.live_grep, opts)
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
 
 -- Oil
-vim.keymap.set("n", "<C-ñ>", "<cmd> Oil --float <CR>", opts)
+vim.keymap.set("n", "<C-{>", "<cmd> Oil<CR>", opts)
 vim.keymap.set("n", "-", "<cmd> Oil --float<CR>", opts)
-vim.keymap.set("n", "<C-->", "<cmd> Oil<CR>", opts)
 
 -- @Langs:
 -- @LSP
@@ -42,12 +41,12 @@ end, opts)
 vim.keymap.set("n", "<Tab>g", "<cmd>G<CR>", opts)
 
 -- @Plugin Manager:
--- @Lazy
+-- Lazy
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", opts)
 
 -- @Terminal
 -- vim Builtin Terminal
-vim.keymap.set("n", "<leader>ñ", function()
+vim.keymap.set("n", "<leader>t", function()
 	vim.cmd.vsplit()
 	vim.api.nvim_win_set_width(0, 38)
 	vim.cmd.term()

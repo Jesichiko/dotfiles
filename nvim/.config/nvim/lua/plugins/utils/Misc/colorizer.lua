@@ -8,8 +8,6 @@ return {
 			"!alpha",
 			"!lazy",
 			"!Outline",
-			css = { rgb_fn = true },
-			html = { names = false },
 		})
 	end,
 }

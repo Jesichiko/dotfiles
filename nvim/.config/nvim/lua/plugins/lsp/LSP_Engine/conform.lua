@@ -28,7 +28,6 @@ return {
 			cpp = { "clang_format" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
-			ruby = { "rubocop" },
 		},
 
 		format_on_save = function(bufnr)
@@ -37,20 +36,5 @@ return {
 			end
 			return { timeout_ms = 500, lsp_format = "fallback" }
 		end,
-
-		Formatters = {
-			rubocop = {
-				args = {
-					"--server",
-					"--auto-correct-all",
-					"--format",
-					"quiet",
-					"--stderr",
-					"--force-exclusion",
-					"--stdin",
-					"$FILENAME",
-				},
-			},
-		},
 	},
 }

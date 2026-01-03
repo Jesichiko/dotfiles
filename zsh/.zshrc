@@ -1,22 +1,31 @@
 # -- Environment & Paths
+
+# Homebrew
 if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-export GOPATH=$HOME/go
-export PATH="$PATH:/home/jesichi/.local/share/gem/ruby/3.4.0/bin:$GOPATH/bin"
-
+# Zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
+[ ! -d "$ZINIT_HOME" ] && {
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+}
 source "${ZINIT_HOME}/zinit.zsh"
 
+# SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+# Language environments
+export GOPATH="$HOME/go"
+export GEM_HOME="$HOME/.local/share/gem/ruby/3.4.0"
+export GEM_PATH="$GEM_HOME"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+
+# PATH
+export PATH="$GEM_HOME/bin:$JAVA_HOME/bin:$GOPATH/bin:$PATH"
+
 
 # -- Plugins
 zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting
